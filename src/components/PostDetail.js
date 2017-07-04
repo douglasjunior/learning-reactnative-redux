@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 
 class PostDetail extends Component {
 
@@ -15,11 +16,13 @@ class PostDetail extends Component {
         this.props.fetchPost(this.props.postId);
     }
 
+    componentDidUpdate() {
+        if (this.props.popScene)
+            Actions.pop();
+    }
+
     render() {
         const { post } = this.props;
-
-        console.log("post")
-        console.log(post)
 
         if (!post) {
             return (
@@ -44,4 +47,8 @@ const mapStateToProps = (state) => {
 
 import { fetchPost } from '../actions'
 
-export default connect(mapStateToProps, { fetchPost })(PostDetail)
+const mapDispatchToProps = {
+    fetchPost
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)

@@ -7,7 +7,11 @@ import {
 const ListItem = ({ item, onItemPress }) => {
     const { title } = item;
     return (
-        <TouchableOpacity style={{ padding: 8 }} onPress={() => onItemPress(item)}>
+        <TouchableOpacity style={{ padding: 8 }} onPress={
+            () => {
+                console.log(item)
+                onItemPress(item)
+            }}>
             <Text>{title}</Text>
         </TouchableOpacity>
     )

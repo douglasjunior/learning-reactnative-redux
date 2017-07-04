@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 import ListItem from './ListItem'
 
@@ -25,8 +25,12 @@ class List extends Component {
         });
     }
 
+    componentDidUpdate() {
+        console.log("List.componentDidUpdate")
+    }
+
     onItemPress(item) {
-        Actions.postDetail({ postId: item.id });
+        Actions.postDetail({ postId: item.id, type: ActionConst.PUSH });
     }
 
     render() {
